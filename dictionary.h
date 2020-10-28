@@ -65,11 +65,10 @@ void dictionary::selectSort()
 {
 	for (int i = 0; i < word_list.size() - 1; i++)
 	{
-		cout << i << endl;
 		int min = i;
 		for (int j = i + 1; j < word_list.size(); j++)
 		{
-			if (word_list[j] < word_list[min])
+			if (word_list[j] > word_list[min])
 			{
 				min = j;
 			}
