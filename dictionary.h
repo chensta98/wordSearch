@@ -47,6 +47,8 @@ void dictionary::readFile(string filename)
 	{
 		cout << "[ERROR]: file does not exist" << endl;
 	}
+
+	dictionary_text.close();
 }
 
 ostream& operator<<(ostream& os, const dictionary& dt)
@@ -79,11 +81,35 @@ void dictionary::selectSort()
 	}
 }
 
+int binarySearch(vector<string> search_list, string word, int left, int right)
+{
+	if (right >= left)
+	{
+		int mid = (left + (right - 1)) / 2;
+
+		if (search_list[mid] == word)
+		{
+			return mid;
+		}
+		else if (search_list[mid] > word)
+		{
+			return binarySearch(search_list, word, left, mid - 1);
+		}
+		else
+		{
+			return binarySearch(search_list, word, mid + 1, right);
+		}
+	}
+	return -1;
+}
+
+
 int dictionary::lookUp(string word)
 {
-	// TODO
-	return 0;
+	int index = binarySearch(word_list, word, 0, word_list.size() - 1);
+	return index;
 }
+
 
 
 #endif // Dictionary Class
