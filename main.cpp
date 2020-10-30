@@ -5,18 +5,33 @@
 #include "grid.h"
 using namespace std;
 
+/*
+vector<string> findMatches(grid letter_grid, dictionary search_dictionary)
+{
+	return
+}
+*/
 
 int main()
 {
 	cout << "Word Search" << endl;
 
-	dictionary dict1;
+	dictionary test_dict;
 
-	dict1.readFile("./input_files/small_test_dict.txt");
+	test_dict.readFile("./input_files/small_test_dict.txt");
 
-	dict1.selectSort();
+	cout << test_dict << endl;
 
-	cout << dict1; 
+	cout << "SORTING " << endl;
+	test_dict.selectSort();
 
-	cout << dict1.lookUp("geez");
+	cout << test_dict << endl;
+
+	cout << "TEST LOOKUP: " << test_dict.lookUp("zzzzzz") << endl;
+
+
+	grid small_grid("./input_files/15x15matrix.txt");
+
+	//small_grid.print_grid();
+
 }

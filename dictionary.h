@@ -25,6 +25,9 @@ public:
 
 	// lookup a word using binary search
 	int lookUp(string word);
+
+	// return list
+	vector<string> get_list();
 };
 
 
@@ -65,20 +68,24 @@ ostream& operator<<(ostream& os, const dictionary& dt)
 
 void dictionary::selectSort()
 {
-	for (int i = 0; i < word_list.size() - 1; i++)
+	int size = word_list.size();
+	int i, j, min;
+	for (i = 0; i < size - 1; i++)
 	{
-		int min = i;
-		for (int j = i + 1; j < word_list.size(); j++)
+		min = i;
+		for (j = i + 1; j < size; j++)
 		{
-			if (word_list[j] > word_list[min])
+			if (word_list[j] < word_list[min])
 			{
 				min = j;
 			}
-			string temp = word_list[min];
-			word_list[min] = word_list[j];
-			word_list[j] = temp;
+			
 		}
+		string temp = word_list[min];
+		word_list[min] = word_list[i];
+		word_list[i] = temp;
 	}
+
 }
 
 int binarySearch(vector<string> search_list, string word, int left, int right)
@@ -95,7 +102,7 @@ int binarySearch(vector<string> search_list, string word, int left, int right)
 		{
 			return binarySearch(search_list, word, left, mid - 1);
 		}
-		else
+		else if (search_list[mid] < word) 
 		{
 			return binarySearch(search_list, word, mid + 1, right);
 		}
@@ -108,6 +115,11 @@ int dictionary::lookUp(string word)
 {
 	int index = binarySearch(word_list, word, 0, word_list.size() - 1);
 	return index;
+}
+
+vector<string> dictionary::get_list()
+{
+	return word_list;
 }
 
 
