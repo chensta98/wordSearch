@@ -93,7 +93,6 @@ int binarySearch(vector<string> search_list, string word, int left, int right)
 	if (right >= left)
 	{
 		int mid = (left + right) / 2;
-
 		if (search_list[mid] == word)
 		{
 			return mid;

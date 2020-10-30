@@ -27,7 +27,7 @@ grid::grid(string filename)
 		letter_grid.resize(rows, cols);
 
 		string line;
-		for (int i = 0; i < rows; i++)
+		for (int i = 0; i < rows+1; i++)
 		{
 			getline(grid_file, line);
 			if (i > 0)
