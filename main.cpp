@@ -27,7 +27,7 @@ int main()
 
 	cout << test_dict << endl;
 
-	cout << "TEST LOOKUP: " << test_dict.lookUp("zzzzzz") << endl;
+	cout << "TEST LOOKUP: " << test_dict.lookUp("code") << endl;
 
 
 	grid small_grid("./input_files/15x15matrix.txt");
