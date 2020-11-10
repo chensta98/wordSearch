@@ -5,11 +5,11 @@
 * This file contains the dictionary class. The dictionary class has a readFile()
 * function that accesses a .txt file and reads each word into a vector of str.
 * The class also contains an overloaded "<<" operator that allows the entire
-* dictionary to be printed. Also in this file is selectSort() function that 
-* uses the selection sort method to reorder the word_list. There is also a 
+* dictionary to be printed. Also in this file is selectSort() function that
+* uses the selection sort method to reorder the word_list. There is also a
 * lookUp() function that utilizes a binarySearch() function created in this
 * file. Finally, there is a get_list() function that simply returns the vector
-* of strings when called. 
+* of strings when called.
 */
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
@@ -41,6 +41,8 @@ public:
 
 	// return list
 	vector<string> get_list();
+
+	vector<string> quicksortDict();
 };
 
 
@@ -159,6 +161,37 @@ vector<string> dictionary::get_list()
 	return word_list;
 }
 
+vector<string> dictionary::quicksortDict()
+{
+	int left = 0;
+	int i = left;
+	int right = word_list.size();
+	int j = right;
+	string temp;
+	string pivot = word_list[(left + right) / 2];
+
+	while (i <= j)
+	{
+		while (word_list[i] < pivot)
+			i++;
+		while (word_list[j] > pivot)
+			j--;
+		if (i <= j)
+		{
+			temp = word_list[i];
+			word_list[i] = word_list[j];
+			word_list[j] = temp;
+			i++;
+			j--;
+		}
+	}
+	
+	if (left < j)
+		quicksortDict();
+
+	if (i < right)
+		quicksortDict();
+}
 
 
 #endif // Dictionary Class
