@@ -4,19 +4,16 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 template <class T>
 T heap
 {
 public:
-	heap(vector<string> vect);
 	int parent(int i);
 	int left(int i);
 	int right(int i);
-}
-
-heap::heap(vector<string> vect)
-{
-	make_heap(vect.begin(), vect.end());
+	void initializeMaxHeap(vector<string> vect);
 }
 
 int heap::parent(int i)
@@ -34,4 +31,25 @@ int heap::right(int i)
 	return (2 * 1 + 2);
 }
 
+void heap::initializeMaxHeap(vector<string> vect)
+{
+	string x;
+	int j;
+	x = vect[left()];
+	j = 2 * left();
+	while (j <= right())
+	{
+		if (j < right && vect[j + 1] > vect[j])
+			j = j + 1;
+		if (x > vect[j])
+			break;
+		else if (x <= vect[j])
+		{
+			vect[j / 2] = vect[j];
+			j = 2 * j;
+		}
+	}
+	vect[j / 2] = x;
+	return;
+}
 #endif
